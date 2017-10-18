@@ -13,4 +13,4 @@ class MyData(models.Model):
     elevation = models.CharField(max_length=255, null=True, blank=True)
 
     class Meta:
-        verbose_name='表格'
+        verbose_name='form'
