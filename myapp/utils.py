@@ -25,7 +25,7 @@ def import_data():
                 elevation=item[5],
             ) )
     MyData.objects.bulk_create(data)
-    print('导入数据成功')
+    print('success to import data')
     # print('\n'.join(data))
 
 def export_data():
@@ -34,7 +34,7 @@ def export_data():
 
     items = MyData.objects.all()
     for item in items:
-        pass # 此处导出
+        pass # 
 
 
 if __name__ == '__main__':
