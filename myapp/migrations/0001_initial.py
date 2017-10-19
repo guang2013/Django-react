@@ -25,7 +25,7 @@ class Migration(migrations.Migration):
                 ('elevation', models.CharField(blank=True, max_length=255, null=True)),
             ],
             options={
-                'verbose_name': 'form',
+                'verbose_name': '表格',
             },
         ),
     ]

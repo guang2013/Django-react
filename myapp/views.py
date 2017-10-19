@@ -9,6 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.db.models.query import QuerySet
 import datetime
 
+
 def product_list(request):
     date_from = request.GET.get('start_time','2016-10-12T12:00:00-05:00')
     date_to = request.GET.get('end_time', '2016-10-14T12:00:00-05:00')
@@ -24,18 +25,31 @@ def product_list(request):
             'elevation':item.elevation,
         })
     res = json.dumps(data)
+
     return HttpResponse(res)
 
 @csrf_exempt
 def product_update(request):
-    id = request.POST.get('id')
-    sid = request.POST.get('sid')
-    description = request.POST.get('description')
-    datetime = request.POST.get('datetime')
-    longitude = request.POST.get('longitude')
-    latitude = request.POST.get('latitude')
-    elevation = request.POST.get('elevation')
-    MyData.objects.get(id=id).save(sid=sid,description=description,datetime=datetime,longitude=longitude,latitude=latitude,elevation=elevation,)
+
+    data = json.loads(request.body)
+    print(data)
+    id = data.get('id')
+    sid = data.get('sid')
+    description = data.get('description')
+    datetime = data.get('datetime')
+    longitude = data.get('longitude')
+    latitude = data.get('latitude')
+    elevation = data.get('elevation')
+    print(id)
+    myData = MyData.objects.get(id=id)
+    myData.sid =sid
+    myData.description = description
+    myData.datetime = datetime
+    myData.longitude = longitude
+    myData.latitude = latitude
+    myData.elevation = elevation
+
+    myData.save()
     return HttpResponse(u"200")
 
 @csrf_exempt
